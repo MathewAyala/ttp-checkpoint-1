@@ -6,6 +6,8 @@ This is **not graded**. It is a checkpoint so your instructors can see where you
 
 If you get stuck, leave a comment explaining what you tried and what confused you. That tells your instructors exactly where to focus their support.
 
+Do not copy/paste any snippets. Please write your solutions out completely as this is good practice to see if you are familiar with the syntax.
+
 ---
 
 **Do not use any AI tools, chats, hints, or autocomplete.**
@@ -24,8 +26,6 @@ If you get stuck, leave a comment explaining what you tried and what confused yo
 | Part 3 | Selecting DOM elements, responding to events, and manipulating the page |
 
 Read the instructions inside each file — they are written as comments.
-
-Do not copy/paste any snippets. Please write your solutions out completely as this is good practice to see if you are familiar with the syntax.
 
 ---
 
