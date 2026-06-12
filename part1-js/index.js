@@ -34,33 +34,59 @@ console.log("[ SECTION A — Variables & Math ]")
 // Declare a variable using const and assign it the number 100.
 // Declare a variable using let and assign it the number 45.
 // Log both.
-
+const num1 = 100;
+let num2 = 45;
+console.log("num1 = :", num1);
+console.log("num2 = :", num2);
 
 // A2.
 // Using only those two variables, write a single expression that adds them,
 // subtracts 20, multiplies by 2, and divides by 5.
 // Log the result.
-
+function weirdAssExpression(){
+  let sum = num1 + num2;
+  let total = ((sum - 20) * 2)/5;
+  console.log(total);
+}
+weirdAssExpression();
 
 // A3.
 // Reassign your let variable to a different number. Log it.
 // Now try to reassign your const variable. What happens?
-//
+  //num1 = 10;   //this causes a TypeError
+  num2 = 1000;
+  
+  console.log("num1 = :", num1);
+  console.log("num2 = :", num2);
 // EXPLAIN: What is the difference between let and const?
 //          Write your answer as a comment below.
 //
-//          answer:
+//          answer: you can change let variables, 
+//                  but const variables can not be changed.
+//                  ...sort off, you can change properties in const objects, one at a time
 
 
 // A4.
 // Using the % operator, write an expression that tells you
 // whether the number 47 is even or odd.
-// Log the result and a message that says "even" or "odd".
-//
+// Log the result and a message that says "even" or "odd". 
+ function isEven(x){
+  if (x%2===0){
+    console.log("Even")
+  }
+  else if (x%2===1){
+    console.log("Odd")
+  }
+ }
+ isEven(10);
+ isEven(11);
 // EXPLAIN: What does the % operator return?
 //          Why is it useful for checking even/odd?
 //
-//          answer:
+//          answer: it returns the remainder.
+//                  this is useful because:
+//                  1. all even numbers have a remainder of 0 when divided by 2
+//                  2. all odd numbers have a remainder of 1 when divided by 2
 
 
 // ------------------------------------------------------------
@@ -70,36 +96,49 @@ console.log("\n[ SECTION B — Strings ]")
 
 
 // The following string is provided for this section. You may use methods or compute manually.
-const rawInput = "   JavaScript is AWESOME   "
 
 // B1.
 // Log the string with all leading and trailing spaces removed (extra spaces in front and end of the text).
-
+const rawInput = "   JavaScript is AWESOME   "
+const draftInput = rawInput.trimStart();
+const finalInput = draftInput.trimEnd();
+console.log(finalInput);
 
 // B2.
 // Log the string converted to all lowercase.
-
+const lowerCaseInput = finalInput.toLocaleLowerCase();
+console.log(lowerCaseInput);
 
 // B3.
 // Log the number of characters in rawInput (including spaces).
-
+console.log(rawInput.length)
 
 // B4.
 // Log whether rawInput contains the word "awesome" (lowercase).
 // It should return true.
-
+// function searchRawInput(input){
+//   let result = rawInput.includes(input);
+//   console.log(result);
+// } 
+// searchRawInput("awesome");
+console.log("B4: ", rawInput.includes("awesome"));  //I noticed I did too much for some of these... I made a bunch of functions for nothing
 
 // B5.
 // Log the first 10 characters of rawInput.
-
+function cutRawInput(start, end){
+  let result = rawInput.slice(start, end);
+  console.log("Problem B5:",result);
+} 
+cutRawInput(0,9);
 
 // B6.
 // Split rawInput (after trimming it) into an array of individual words.
 // Log the resulting array.
-//
+const stringToArray = rawInput.split(" ");
+console.log ("Problem B6:",stringToArray);
 // EXPLAIN: What does .split() do? What argument did you pass it and why?
 //
-//        answer: 
+//        answer: .split() creates an array from a string, when you pass a space " " in it, each word because its own element within that array.
 
 
 // ------------------------------------------------------------
@@ -117,57 +156,78 @@ const scores = [88, 72, 95, 60, 84, 100, 73, 91]
 // C1.
 // Log the first score. Log the last score.
 // Do not hardcode the index for the last one.
+let firstScore = scores[0];
+const lastScore = scores[scores.length -1];
+
+
+console.log("Problem C1:",firstScore,lastScore);
 
 
 // C2.
 // Log the total number of scores we see in the array.
-
+const totalScores = scores.length;
+console.log("Problem C2:",totalScores)
 
 // C3.
 // Use a method to mutate and add the number 78 to the end of the array.
 // Log the updated array.
-
+scores.push(78);
+console.log("Problem C3:", scores[scores.length -1]);
 
 // C4.
 // Use a method to log the index of the score 95.
 // Log the index.
-
+console.log("Problem C4:", scores.indexOf(95))
 
 // C5.
 // Use a method to log whether the array includes the score 50.
 // Log the boolean value.
-
+console.log("Problem C5:", scores.includes(50))
 
 // C6.
 // Use a for loop to log each score on its own line.
 // Do not modify the original scores array.
-
-
+function printArray(array){
+  for ( let j = 0 ; j < array.length; j++){
+    console.log(array[j])
+  }
+}
+console.log("Starting problem C6:")
+printArray(scores);
+console.log("End of problem C6:")
 // C7.
 // Use .forEach() to log each score on its own line.
 // Do not modify the original scores array.
-//
+function printArray2(array){
+  console.log("C7", array);
+}
+scores.forEach(printArray2);
 // EXPLAIN: What is the difference between a for loop and forEach?
 //          Is one better than the other?
-//
-
+//          a for loop gives the programmer more control of the output.
+//          Neither is "better". Sometimes .forEach() can save you time and effort.
 
 // C8.
 // Use .filter() to create a new array containing only the scores above 80.
 // Log the new result array.
 // Do not modify the original scores array.
-
-
+function above80 (nums){
+  return nums > 80;
+}
+console.log("C8: ",scores.filter(above80));
 // C9.
 // Use .map() to create a new array where every score is multiplied by 2.
 // Log the new result array.
 // Do not modify the original scores array.
-//
+function double(nums){
+return nums * 2; 
+}
+console.log("C9: ",scores.map(double))
 // EXPLAIN: What does .map() return? What does .filter() return?
 //          How are they different?
 //
-//          answer:
-
+//          answer: .map() takes the array and applies a function to each element in it then returns it as a new array without mutating the original one.
+//                  .filter() takes the array and passes the elements that are true, then returns those values as a new array without mutating the original one.
 
 
 
@@ -189,25 +249,28 @@ const student = {
 // Log the value of name using dot notation.
 // Log the value of city using bracket notation.
 
-
+console.log("D1: Future Finals MVP", student.name);
+console.log("D1: Greatest City",  student["city"])
 // D2.
 // Add a new key called grade and set it to "B+".
 // Log the updated object.
-
+console.log("D2: ", Object.defineProperty(student, "grade", {value: "B+"}))
 
 // D3.
 // Use a method to log all of the keys in the object.
-
+console.log("D3: ",Object.keys(student))
 
 // D4.
 // Use a method to log all of the values in the object.
-
+console.log("D4: ",Object.values(student))
 
 // D5.
 // Using a for...in loop, log each key-value pair in this exact format:
 //   name: Jane
 //   age: 21
 //   (etc.)
+
+//////I dont remember how to use a for...in loop. I never had to use it before
 
 
 // D6.
@@ -234,17 +297,23 @@ const roster = [
 
 // E1.
 // Log the name of the third student.
+console.log("E1: ", roster[2].name);
 
 
 // E2.
 // Using forEach, log the name of every student who is present.
-
-
+function rosterNames(array){
+  console.log(array.name)
+}
+roster.forEach(rosterNames)
 // E3.
 // Create a new array containing only the students who passed (grade >= 70).
 // Log each passing student's name and grade.
+function passed(array.grade){
+  return array.grade >= 70;
+}
 
-
+console.log("E5: ", roster.filter(passed));
 // E4.
 // Create a new array of just the names of all students (no other data).
 // Log the result array.
