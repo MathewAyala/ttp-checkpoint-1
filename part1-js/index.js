@@ -70,7 +70,7 @@ weirdAssExpression();
 // Using the % operator, write an expression that tells you
 // whether the number 47 is even or odd.
 // Log the result and a message that says "even" or "odd". 
- function isEven(x){
+ function Even(x){
   if (x%2===0){
     console.log("Even")
   }
@@ -78,8 +78,8 @@ weirdAssExpression();
     console.log("Odd")
   }
  }
- isEven(10);
- isEven(11);
+ Even(10);
+ Even(11);
 // EXPLAIN: What does the % operator return?
 //          Why is it useful for checking even/odd?
 //
@@ -269,7 +269,9 @@ console.log("D4: ",Object.values(student))
 //   name: Jane
 //   age: 21
 //   (etc.)
-
+// let student2 = {};
+// for (let i in student2)
+  
 //////I dont remember how to use a for...in loop. I never had to use it before
 
 
@@ -301,30 +303,40 @@ console.log("E1: ", roster[2].name);
 
 
 // E2.
-// Using forEach, log the name of every student who is present.
+//Using forEach, log the name of every student who is present.
 function rosterNames(array){
-  console.log(array.name)
+  if (array.present === true){
+    console.log("E2: ", array.name);
+  }
 }
-roster.forEach(rosterNames)
+roster.forEach(rosterNames);
+
 // E3.
 // Create a new array containing only the students who passed (grade >= 70).
 // Log each passing student's name and grade.
-function passed(array.grade){
-  return array.grade >= 70;
-}
-
-console.log("E5: ", roster.filter(passed));
+const graduates = roster.map(function passed(people){
+  if (people.grade >= 70){
+    return {
+      name: people.name, 
+      grade: people.grade 
+    }
+  }
+})
+console.log("E3: ",graduates);
 // E4.
 // Create a new array of just the names of all students (no other data).
 // Log the result array.
 
+  const newRoster = roster.map((oldRoster)=> oldRoster.name);
+  console.log("E4: ", newRoster)
 
 // E5.
 // EXPLAIN: Why would you store objects inside an array?
 //          What problem does that structure solve compared to
 //          storing everything in separate variables?
 //
-//          answer:
+//          answer: I would store objects inside an array when I have multiple objects with the same key value pairs.
+//                  Storing them all in one place is more organized an easier to access. It's like having a folder vs a bunch of loose papers.
 
 
 // ------------------------------------------------------------
@@ -339,6 +351,9 @@ console.log("\n[ SECTION F — Functions ]")
 // Write a function called greet that takes a name as an argument
 // and returns a greeting string.
 //
+function greet (name){
+  return "Hello, "+ name+"!"
+}
 console.log(greet("Alex"))   // → "Hello, Alex!"
 console.log(greet("Mike"))   // → "Hello, Mike!"
 
@@ -346,19 +361,29 @@ console.log(greet("Mike"))   // → "Hello, Mike!"
 // F2.
 // Write a function called square that takes a number and returns its square.
 //
+function square(num){
+  return num*num;
+}
 console.log(square(4))   // → 16
 console.log(square(9))   // → 81
 //
 // EXPLAIN: What does the return keyword do?
 //          What does a function return if you forget to write return?
 //
-//          answer:
-
-
+//          answer: the return keyword passes an arguement and immediately ends the function.
+//                  undefined
 // F3.
 // Write a function called isEven that takes a number and returns
 // true if it is even and false if it is odd.
 //
+function isEven(num){
+  if (num%2===0){
+    return true ;
+  }
+  else{
+    return false;
+  }
+}
 console.log(isEven(4))   // → true
 console.log(isEven(7))   // → false
 console.log(isEven(0))   // → true
@@ -369,6 +394,13 @@ console.log(isEven(0))   // → true
 // and returns the total of all the numbers added together.
 // Use a loop inside — do not use a built-in method.
 //
+function sum (nums){
+  let total = 0; 
+  for (let i = 0; i <nums.length; i++){
+    total += nums[i];
+  }
+  return total;
+}
 console.log(sum([1, 2, 3, 4, 5]))   // → 15
 console.log(sum([10, 20, 30]))       // → 60
 console.log(sum([]))                 // → 0
@@ -380,9 +412,9 @@ console.log(sum([]))                 // → 0
 // It should not return anything.
 // Do not use the native .forEach() inside your function — use a for loop.
 //
-myForEach([1, 2, 3], function(n) {
-  console.log(n)
-})
+// myForEach([1, 2, 3], function(n) {
+//   console.log(n)
+//  })
 // → 1
 // → 2
 // → 3
@@ -390,7 +422,8 @@ myForEach([1, 2, 3], function(n) {
 // EXPLAIN: What is a callback function?
 //          In the example above, what plays the role of the callback?
 //
-//          answer:
+//          answer: a callback is a function that is passes to another function.
+//                  the callback was the function that took the n assignment.
 
 
 // F6.
@@ -399,6 +432,13 @@ myForEach([1, 2, 3], function(n) {
 // calling the callback on the original element.
 // Do not use the native .map() inside your function — use a for loop.
 //
+function myMap(array, fn){
+  let newArray = [];
+  for (let i = 0; i < array.length; i++){
+    newArray[i] = fn(array[i]); 
+  }
+  return newArray;
+}
 console.log(myMap([1, 2, 3], (n) => n * 2))    // → [2, 4, 6]
 console.log(myMap([1, 2, 3], (n) => n + 10))   // → [11, 12, 13]
 
@@ -409,6 +449,17 @@ console.log(myMap([1, 2, 3], (n) => n + 10))   // → [11, 12, 13]
 // the callback returns true.
 // Do not use the native .filter() inside your function — use a for loop.
 //
+function myFilter(array, fn){
+  let newArray = [];
+  let newestArray = [];
+  for (let i = 0; i < array.length; i++){
+    //if (fn(array[i])==){
+      newArray[i] = fn(array[i]);
+   // }
+   newestArray[i] = fn(newArray[i])
+  }
+  return newestArray;
+}
 console.log(myFilter([1, 2, 3, 4, 5], n => n > 3))          // → [4, 5]
 console.log(myFilter([10, 25, 30, 45], n => n % 2 === 0))   // → [10, 30]
 //
