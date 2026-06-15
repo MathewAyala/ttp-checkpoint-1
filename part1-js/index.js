@@ -449,17 +449,15 @@ console.log(myMap([1, 2, 3], (n) => n + 10))   // → [11, 12, 13]
 // the callback returns true.
 // Do not use the native .filter() inside your function — use a for loop.
 //
-function myFilter(array, fn){
-  let newArray = [];
-  let newestArray = [];
-  for (let i = 0; i < array.length; i++){
-    //if (fn(array[i])==){
-      newArray[i] = fn(array[i]);
-   // }
-   newestArray[i] = fn(newArray[i])
-  }
-  return newestArray;
-}
+// function myFilter(array, fn){
+//   let newArray = [];
+//   for (let i = 0; i < array.length; i++){
+//     //if (fn(array[i])==){
+//       newArray[i] = fn(array[i]);
+//    // }
+//   }
+//   return newArray;
+// }
 console.log(myFilter([1, 2, 3, 4, 5], n => n > 3))          // → [4, 5]
 console.log(myFilter([10, 25, 30, 45], n => n % 2 === 0))   // → [10, 30]
 //
