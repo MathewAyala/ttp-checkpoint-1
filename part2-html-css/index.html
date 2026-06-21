@@ -54,7 +54,7 @@
         Both rules target the same paragraph.
         Which color will the paragraph actually be? Why does one rule win?
 
-        Answer:
+        Answer: tomato because id is higher up in priority.
 
 -->
 
@@ -65,15 +65,15 @@
 <html lang = "en">
   <head>
     <title>Mathew's Website</title>
-    <link rel="stylesheet" href="look.css"> 
+    <link rel="stylesheet" href="look.css">  <!-- goes in the head to make sure the styles render before the all other visible content.-->
   </head>
   <body>
     <h1>My Checkpoint Page</h1>
     <p id="intro">They said we would get swept, that we didn't have "a guy". They didn't want to see us win, but guess who did; GOD DID!</p>
-    <h2 id="section-title">The New York Knicks put BELT to ASS!</h2>
+    <h2 id="section-title">The New York Knicks are NBA Champions!</h2>
     <ol>
-      <li class="highlight"></li>
-      <li></li>
+      <li class="highlight"></li> <!-- The difference between a class and an id is that an id must be unique-->
+      <li></li>                   <!-- classes are meant to be reused, but an id can't be used by more than one element-->
       <li class="highlight"></li>
       <li></li>
     </ol>

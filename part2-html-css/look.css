@@ -58,7 +58,7 @@ h1{
            Write your answer as a comment below this rule.
 
 
-           answer: padding is how much space the box takes up and margin is the distance from a specified section of a page.
+           answer: padding creates space INSIDE and element's border while margin creates space OUTSIDE and element's border.
 */
 #box{
   width: 100px;

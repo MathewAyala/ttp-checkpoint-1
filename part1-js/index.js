@@ -125,16 +125,17 @@ console.log("B4: ", rawInput.includes("awesome"));  //I noticed I did too much f
 
 // B5.
 // Log the first 10 characters of rawInput.
-function cutRawInput(start, end){
-  let result = rawInput.slice(start, end);
-  console.log("Problem B5:",result);
-} 
-cutRawInput(0,9);
+// function cutRawInput(start, end){
+//   let result = rawInput.slice(start, end);
+//   console.log("Problem B5:",result);
+// } 
+// cutRawInput(0,10);
+console.log(rawInput.trim().slice(0,10))
 
 // B6.
 // Split rawInput (after trimming it) into an array of individual words.
 // Log the resulting array.
-const stringToArray = rawInput.split(" ");
+const stringToArray = rawInput.trim().split(" ");
 console.log ("Problem B6:",stringToArray);
 // EXPLAIN: What does .split() do? What argument did you pass it and why?
 //
@@ -166,7 +167,7 @@ console.log("Problem C1:",firstScore,lastScore);
 // C2.
 // Log the total number of scores we see in the array.
 const totalScores = scores.length;
-console.log("Problem C2:",totalScores)
+console.log("Problem C2:",totalScores);
 
 // C3.
 // Use a method to mutate and add the number 78 to the end of the array.
@@ -194,7 +195,7 @@ function printArray(array){
 }
 console.log("Starting problem C6:")
 printArray(scores);
-console.log("End of problem C6:")
+console.log("End of problem C6")
 // C7.
 // Use .forEach() to log each score on its own line.
 // Do not modify the original scores array.
@@ -269,10 +270,15 @@ console.log("D4: ",Object.values(student))
 //   name: Jane
 //   age: 21
 //   (etc.)
-// let student2 = {};
-// for (let i in student2)
+ 
+ const student2 = {
+  name: "Jane", age: 21, city: "New Jersey", enrolled: false
+ };
+  for (let i in student2){
+    console.log(i + " : " + student2[i])
+  }
   
-//////I dont remember how to use a for...in loop. I never had to use it before
+
 
 
 // D6.
@@ -280,7 +286,8 @@ console.log("D4: ",Object.values(student))
 //          Give an example of when you would need to use bracket notation
 //          instead of dot notation.
 //
-//          answer:
+//          answer: If you know the key by name use dot.
+//                  Otherwise, use bracket.
 
 // ------------------------------------------------------------
 // SECTION E — Arrays of Objects
@@ -377,12 +384,7 @@ console.log(square(9))   // → 81
 // true if it is even and false if it is odd.
 //
 function isEven(num){
-  if (num%2===0){
-    return true ;
-  }
-  else{
-    return false;
-  }
+  return num%2===0;
 }
 console.log(isEven(4))   // → true
 console.log(isEven(7))   // → false
@@ -411,14 +413,20 @@ console.log(sum([]))                 // → 0
 // It should call the callback on every element in the array.
 // It should not return anything.
 // Do not use the native .forEach() inside your function — use a for loop.
-//
-// myForEach([1, 2, 3], function(n) {
-//   console.log(n)
-//  })
+
+function myForEach(array, callback){
+      for (let i = 0 ; i < array.length; i++){
+        const item = array[i]
+        callback(item)
+      }
+    }
+myForEach([1, 2, 3], function(n) {
+  console.log(n)
+ })
 // → 1
 // → 2
 // → 3
-//
+    
 // EXPLAIN: What is a callback function?
 //          In the example above, what plays the role of the callback?
 //
@@ -449,15 +457,18 @@ console.log(myMap([1, 2, 3], (n) => n + 10))   // → [11, 12, 13]
 // the callback returns true.
 // Do not use the native .filter() inside your function — use a for loop.
 //
-// function myFilter(array, fn){
-//   let newArray = [];
-//   for (let i = 0; i < array.length; i++){
-//     //if (fn(array[i])==){
-//       newArray[i] = fn(array[i]);
-//    // }
-//   }
-//   return newArray;
-// }
+function myFilter(array, fn){
+  let newArray = [];
+  for (let i = 0; i < array.length; i++){
+    const isBool = fn(array[i])
+    if (isBool){
+       newArray.push(array[i]);
+      }
+  }
+  return newArray;
+}
+
+
 console.log(myFilter([1, 2, 3, 4, 5], n => n > 3))          // → [4, 5]
 console.log(myFilter([10, 25, 30, 45], n => n % 2 === 0))   // → [10, 30]
 //
@@ -465,4 +476,6 @@ console.log(myFilter([10, 25, 30, 45], n => n % 2 === 0))   // → [10, 30]
 //          What is the key difference between what they return?
 //          Why do neither of them change the original array?
 //
-//          answer:
+//          answer: They both loop through every element of an array and return a new array. 
+//                  One accepts all number values while the other has conditions for the values it'll accept.
+//                  Because the raw data might be useful for something else.
